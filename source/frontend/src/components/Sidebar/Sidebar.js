@@ -50,7 +50,7 @@ class Sidebar extends React.Component {
                                 <a className="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
                                    data-target="#dashboard" aria-expanded="false" aria-controls="dashboard">
                                     <i className="mdi mdi-view-dashboard-outline"/>
-                                    <span className="nav-text">Dashboard</span> <b className="caret"/>
+                                    <span className="nav-text">Products</span> <b className="caret"/>
                                 </a>
                                 <ul className="collapse" id="dashboard" data-parent="#sidebar-menu">
                                     <div className="sub-menu">
@@ -58,7 +58,7 @@ class Sidebar extends React.Component {
                                             <Link className="sidenav-item-link" to={'/product/add'}><span className="nav-text">Add new</span></Link>
                                         </li>
                                         <li>
-                                            <Link className="sidenav-item-link" to={'/products'}><span className="nav-text">Products</span></Link>
+                                            <Link className="sidenav-item-link" to={'/products'}><span className="nav-text">Product list</span></Link>
                                         </li>
                                     </div>
                                 </ul>
