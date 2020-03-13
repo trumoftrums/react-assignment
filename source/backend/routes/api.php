@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +12,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 Route::post('register', 'RegisterController@register');
 
-Route::resource('products', 'ProductController');
+Route::group(['prefix' => 'auth', 'middleware' => []], function () {
+
+    Route::post('login', 'JwtAuthController@login');
+    Route::post('logout', 'JwtAuthController@logout');
+    Route::post('refresh', 'JwtAuthController@refresh');
+    Route::post('me', 'JwtAuthController@me');
+
+});
+
+Route::group(['prefix' => '', 'middleware' => []], function () {
+    Route::resource('products', 'ProductController');
+
+});

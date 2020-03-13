@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends BaseController
 {
+
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.jwt');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
