@@ -2,6 +2,18 @@ import React from 'react';
 import Sidebar from "../components/Sidebar/Sidebar";
 
 class PrivateLayout extends React.Component{
+    constructor(props){
+        super(props);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogout(){
+        console.log('logout');
+        console.log(this.state.)
+        localStorage.removeItem('token');
+        localStorage.clear();
+    }
+
     render() {
         return (
             <div className="private-page">
@@ -111,7 +123,7 @@ class PrivateLayout extends React.Component{
                                                     <a href="#"> <i className="mdi mdi-settings"/> Account Setting </a>
                                                 </li>
                                                 <li className="dropdown-footer">
-                                                    <a href="signin.html"> <i className="mdi mdi-logout"/> Log Out </a>
+                                                    <a> <i className="mdi mdi-logout" onClick={this.handleLogout}/> Log Out </a>
                                                 </li>
                                             </ul>
                                         </li>

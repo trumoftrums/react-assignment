@@ -18,7 +18,7 @@
 
 Route::post('register', 'RegisterController@register');
 
-Route::group(['prefix' => 'auth', 'middleware' => []], function () {
+Route::group(['prefix' => 'auth', 'middleware' => ['cors']], function () {
 
     Route::post('login', 'JwtAuthController@login');
     Route::post('logout', 'JwtAuthController@logout');
@@ -27,7 +27,7 @@ Route::group(['prefix' => 'auth', 'middleware' => []], function () {
 
 });
 
-Route::group(['prefix' => '', 'middleware' => []], function () {
+Route::group(['prefix' => '', 'middleware' => ['cors']], function () {
     Route::resource('products', 'ProductController');
 
 });

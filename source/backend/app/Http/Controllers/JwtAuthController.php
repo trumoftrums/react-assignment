@@ -29,10 +29,17 @@ class JwtAuthController extends BaseController
         $credentials = $request->only('email', 'password');
 
         if ($token = $this->guard()->attempt($credentials)) {
-            return $this->respondWithToken($token);
+            $message = 'Login success';
+            $data = [
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => $this->guard()->factory()->getTTL() * 60
+            ];
+            return $this->sendResponse($data, $message);
+        }else{
+            $message = 'Login fail';
+            return $this->sendError($message,[], 200);
         }
-
-        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
     /**

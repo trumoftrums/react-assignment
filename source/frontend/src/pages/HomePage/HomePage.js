@@ -1,7 +1,28 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 
 class HomePage extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            redirect:false
+        }
+    }
+
+    componentWillMount() {
+        console.log(localStorage.getItem('token'));
+        if(localStorage.getItem('token') === null){
+            this.setState({
+                redirect:true
+            });
+        }
+    }
+
     render() {
+        if(this.state.redirect){
+            return (<Redirect to={'/login'}/>)
+        }
+
         return (
             <div className="content">
                 {/* Top Statistics */}
