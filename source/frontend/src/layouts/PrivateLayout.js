@@ -9,7 +9,6 @@ class PrivateLayout extends React.Component{
 
     handleLogout(){
         console.log('logout');
-        console.log(this.state.)
         localStorage.removeItem('token');
         localStorage.clear();
     }

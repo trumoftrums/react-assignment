@@ -7,9 +7,11 @@ class ProductItem extends React.Component {
             <tr>
                 <td>{index + 1}</td>
                 <td>
-                    <a className="text-dark" href> {product.name}</a>
+                    <a className="text-dark" href>
+                        <img src={product.thumbnail} style={{width: "100px"}}/>
+                    </a>
                 </td>
-                <td className="d-none d-md-table-cell">{product.email}</td>
+                <td className="d-none d-md-table-cell">{product.name}</td>
                 <td className="d-none d-md-table-cell">{product.created_at}</td>
                 <td className="d-none d-md-table-cell">{product.updated_at}</td>
                 <td>
