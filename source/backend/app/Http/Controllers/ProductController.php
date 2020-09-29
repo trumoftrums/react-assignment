@@ -22,13 +22,18 @@ class ProductController extends BaseController
 
     /**
      * Display a listing of the resource.
-     *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Products::paginate(5);
+        $input = $request->all();
+        //var_dump($input);
+        $column  = isset($input['column']) ? $input['column'] : 'id';
+        $sort  = isset($input['order']) ? $input['order'] : 'ASC';
+        $products = Products::orderBy($column, $sort)->paginate($input['per_page']);
 
+        //var_dump($products);
         return $this->sendResponse($products->toArray(), 'Products retrieved successfully.');
     }
 
@@ -51,6 +56,9 @@ class ProductController extends BaseController
         ]);
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
+        }
+        if(isset($input['thumbnail'])){
+            $input['thumbnail']->move('upload/test', $input['thumbnail']->getClientOriginalName());
         }
         $product = Products::create($input);
 
